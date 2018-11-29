@@ -8,14 +8,9 @@ import android.arch.lifecycle.LiveData
 
 
 
-class MainViewModel(token : String) : ViewModel() {
-    private var supplyList = MutableLiveData<List<Supply>>()
+class MainViewModel : ViewModel() {
 
-    init {
-        supplyList = HtfApi().getSupplies(token)
-    }
-
-    fun getSupplyListObservable(): LiveData<List<Supply>> {
-        return supplyList
+    fun getSupplyListObservable(token : String): LiveData<List<Supply>> {
+        return HtfApi().getSupplies(token)
     }
 }

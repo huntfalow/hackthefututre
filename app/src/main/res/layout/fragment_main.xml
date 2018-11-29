@@ -7,15 +7,11 @@
         <import type="android.view.View" />
 
         <variable
-                name="item"
-                type="com.example.tjorv.hackthefuture.model.Supply" />
+                name="supplyViewModel"
+                type="com.example.tjorv.hackthefuture.viewModels.MainViewModel" />
     </data>
     <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
                                                  android:layout_height="match_parent">
-        <TextView android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:text="@{item.name}"
-        />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

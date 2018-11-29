@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.tjorv.hackthefuture.R
+import com.example.tjorv.hackthefuture.databinding.ListItemSupplyBinding
 
-class SupplyAdapter(private val supplyList : ArrayList<Supply>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SupplyAdapter(private var supplyList : ArrayList<Supply>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_supply, parent, false))
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ListItemSupplyBinding.inflate(inflater)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -21,10 +23,14 @@ class SupplyAdapter(private val supplyList : ArrayList<Supply>) : RecyclerView.A
         return supplyList.size
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(supply: Supply) {
-            //TODO bind to views
-        }
+    fun setSupplyList(supplies: ArrayList<Supply>) {
+        supplyList = supplies
+    }
 
+    inner class ViewHolder(val binding: ListItemSupplyBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Supply) {
+            binding.item = item
+            binding.executePendingBindings()
+        }
     }
 }
