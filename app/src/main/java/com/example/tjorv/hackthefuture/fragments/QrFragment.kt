@@ -1,5 +1,6 @@
 package be.equality.metar.fragments
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,6 +15,7 @@ import com.example.tjorv.hackthefuture.R
 import be.equality.metar.model.Airport
 import com.example.tjorv.hackthefuture.model.Supply
 import com.example.tjorv.hackthefuture.fragments.BaseFragment
+import com.example.tjorv.hackthefuture.viewModels.MainViewModel
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_airports.*
 import kotlinx.android.synthetic.main.row_layout.view.*
@@ -28,7 +30,7 @@ import kotlinx.android.synthetic.main.row_layout.view.*
  * create an instance of this fragment.
  *
  */
-class AirportsFragment : BaseFragment() {
+class AirportsFragment : Fragment() {
 
     /**
      * The listener to interact with other Activities and Fragments
@@ -42,10 +44,17 @@ class AirportsFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_airports, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        //observeViewModel(viewModel)
+    }
 
     override fun onStart() {
         super.onStart()
