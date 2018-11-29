@@ -2,8 +2,8 @@ package com.example.tjorv.hackthefuture.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tjorv.hackthefuture.R
 import com.example.tjorv.hackthefuture.fragments.LoginFragment
+import com.example.tjorv.hackthefuture.R
 
 
 class MainActivity : AppCompatActivity() {
