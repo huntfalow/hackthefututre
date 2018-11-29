@@ -1,22 +1,18 @@
 package be.equality.metar.fragments
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.os.Bundle
+import android.support.annotation.Nullable
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.example.tjorv.hackthefuture.R
-import be.equality.metar.model.Airport
 import com.example.tjorv.hackthefuture.model.Supply
-import com.example.tjorv.hackthefuture.fragments.BaseFragment
+import com.example.tjorv.hackthefuture.viewModels.MainViewModel
 import com.orhanobut.logger.Logger
-import kotlinx.android.synthetic.main.fragment_airports.*
-import kotlinx.android.synthetic.main.row_layout.view.*
 
 
 /**
@@ -28,7 +24,7 @@ import kotlinx.android.synthetic.main.row_layout.view.*
  * create an instance of this fragment.
  *
  */
-class AirportsFragment : BaseFragment() {
+class QrFragment {
 
     /**
      * The listener to interact with other Activities and Fragments
@@ -38,20 +34,29 @@ class AirportsFragment : BaseFragment() {
     /**
      * List containing the aiports for which a METAR can be requested.
      */
-    private var supplies: List<Supply>? = null
+    private var supplies: ArrayList<Supply> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_airports, container, false)
+        return inflater.inflate(R.layout.list_item_supply, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        observeViewModel(viewModel)
+    }
 
-    override fun onStart() {
-        super.onStart()
-        //TODO
-        recyclerview.adapter = SimpleItemRecyclerViewAdapter(supplies!!)
-        recyclerview.layoutManager = LinearLayoutManager(context)
+    private fun observeViewModel(viewModel: MainViewModel) {
+        // Update the list when the data changes
+        viewModel.getSupplyListObservable().observe(this, object : Observer<List<Supply>> {
+            override fun onChanged(@Nullable projects: List<Supply>?) {
+                if (projects != null) {
+                    //TODO add Recyclerview adapter
+                }
+            }
+        })
     }
 
     /**
@@ -89,7 +94,7 @@ class AirportsFragment : BaseFragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun showAirportMetar()
+        //TODO Implement
     }
 
 
