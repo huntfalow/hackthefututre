@@ -1,16 +1,30 @@
 package com.example.tjorv.hackthefuture.model
 
 import android.arch.lifecycle.MutableLiveData
-import java.util.*
+import com.github.kittinunf.fuel.httpGet
+import org.json.JSONObject
 import kotlin.collections.ArrayList
+import android.arch.lifecycle.LiveData
+
+
 
 class HtfApi {
-    fun getSupplies(token : String) : MutableLiveData<List<Supply>>{
-        val tempList = ArrayList<Supply>()
-        val returnList = MutableLiveData<List<Supply>>()
+    private val suppliesListObservable: LiveData<List<Supply>>? = null
 
-        tempList.add(Supply(0,"Test", 0F,0F,"Test","Test","Test"))
-        returnList.value = tempList
-        return returnList
+    fun getSupplies(token : String) : MutableLiveData<List<Supply>>{
+        val suppliesList: ArrayList<Supply> = ArrayList()
+
+        val (_, _, result) = "https://htf2018.now.sh/supplies".httpGet()
+            .header(mapOf("Content-Type" to "application/json"))
+            .responseObject(Supply.Deserializer())
+        val (supplies, err) = result
+        if (err != null){
+            throw err.exception
+        }
+        supplies!!.forEach { supply ->
+            suppliesList.add(supply)
+        }
+
+        return MutableLiveData()
     }
 }
