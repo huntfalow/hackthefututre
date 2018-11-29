@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">Hack The Future</string>
+        <string name="home_header">TalentCoach</string>
+        <string name="talent_header">Talent</string>
+        <string name="talent_competenties">Jouw competenties</string>
+        <string name="coach_header">Coach</string>
+        <string name="joborganisatie_header">Joborganisatie</string>
+        <string name="joborganisatie_werkrooster">Werkrooster en Vakantiedagen</string>
+        <string name="joborganisatie_loonbrief">Loonbrief</string>
+        <string name="joborganisatie_info">Info</string>
+        <string name="communicatie_header">Communicatie</string>
+        <string name="back">back</string>
+        <string name="talent_ArrayCompetentie">Competentie</string>
+        <string name="talent_ArraySchooljaar">Schooljaar</string>
+        <string name="talent_ArrayModule">Module</string>
+        <string name="grafiek_vooruitgang">Vooruitgang competenties</string>
+        <string name="grafiek_scores">Overzicht scores</string>
+        <string name="error_data">Er is iets foutgelopen bij het ophalen van de data.</string>
+        <string name="error_login">De loginvelden moeten ingevuld zijn.</string>
+        <string name="email">Gebruikersnaam</string>
+        <string name="password">Password</string>
+        <string name="login">Login</string>
+        <string name="logout">Uitloggen</string>
+        <string name="logout_message">Ben je zeker dat je wilt uitloggen?</string>
+        <string name="talentcoach">TalentCoach</string>
+        <string name="error_email">Gebruikersnaam moet ingevuld zijn.</string>
+        <string name="error_password">Password moet ingevuld zijn.</string>
+        <string name="projecten_titel">Projecten van %1$s %2$s</string>
+        <string name="historiek_titel">Historiek van %1$s</string>
+        <string name="jouwStudenten">Jouw Studenten</string>
+        <string name="imageButton">ImageButton</string>
+        <string name="imageView">ImageView</string>
+        <string name="historiek">Historiek</string>
+        <string name="behaald">Behaald</string>
+        <string name="niet_behaald">Niet Behaald</string>
+        <string name="competentie">Competentie</string>
+        <string name="criteria">criteria</string>
+        <string name="feedback">Feedback</string>
+        <string name="beoordelen">Beoordelen</string>
+
+
 </resources>
