@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Hack The Future</string>
+    <string name="com_auth0_client_id">km5vlAJ8kgQAtbucvAyzUgkakxRj5ajv</string>
+    <string name="com_auth0_domain">hackthefuturemobile.eu.auth0.com</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
         <string name="home_header">TalentCoach</string>
         <string name="talent_header">Talent</string>
         <string name="talent_competenties">Jouw competenties</string>
