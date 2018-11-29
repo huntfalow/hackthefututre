@@ -33,4 +33,6 @@ dependencies {
 
     implementation 'com.github.kittinunf.fuel:fuel:1.15.1'
     implementation 'com.github.kittinunf.fuel:fuel-android:1.15.1'
+    implementation 'com.android.support:recyclerview-v7:+'
+
 }
