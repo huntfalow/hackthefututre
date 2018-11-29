@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.tjorv.hackthefuture.R
 import be.equality.metar.model.Airport
+import com.example.tjorv.hackthefuture.model.Supply
 import com.example.tjorv.hackthefuture.fragments.BaseFragment
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_airports.*
@@ -37,7 +38,7 @@ class AirportsFragment : BaseFragment() {
     /**
      * List containing the aiports for which a METAR can be requested.
      */
-    private var airports: List<Airport>? = null
+    private var supplies: List<Supply>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -48,7 +49,8 @@ class AirportsFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        recyclerview.adapter = SimpleItemRecyclerViewAdapter(airports!!)
+        //TODO
+        recyclerview.adapter = SimpleItemRecyclerViewAdapter(supplies!!)
         recyclerview.layoutManager = LinearLayoutManager(context)
     }
 
@@ -57,7 +59,7 @@ class AirportsFragment : BaseFragment() {
      */
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        TAG = "AirportsFragment"
+        TAG = "SuppliesFragment"
 
 
         if (context is OnFragmentInteractionListener) {
@@ -88,46 +90,6 @@ class AirportsFragment : BaseFragment() {
      */
     interface OnFragmentInteractionListener {
         fun showAirportMetar()
-    }
-
-    /***********************************************************************************************
-     * Recyclerview showing the aiports
-     *
-     ***********************************************************************************************
-     */
-    class SimpleItemRecyclerViewAdapter(private val airports: List<Airport>
-    ) :
-        RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
-
-        private val onClickListener: View.OnClickListener = View.OnClickListener {
-            //val item = v.tag as Airport
-            Logger.i("Pressed an element on the Recyclerview")
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.row_layout, parent, false)
-            return ViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val airport = airports[position]
-            holder.name.text = airport.description
-            holder.thumbNail.setImageResource(R.drawable.airport)
-
-            with(holder.thumbNail) {
-                tag = airport // Save the airport represented by this view
-                setOnClickListener(onClickListener)
-            }
-        }
-
-        override fun getItemCount() = airports.size
-
-        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val name: TextView = view.name
-            var description: TextView = view.textview_rowlayout_description
-            var thumbNail: ImageView = view.imageview_rowlayout_thumbnail
-        }
     }
 
 
