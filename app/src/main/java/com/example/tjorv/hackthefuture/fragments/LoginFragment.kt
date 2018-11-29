@@ -1,4 +1,4 @@
-package com.example.groep13ideaalduaal.fragments
+package com.example.tjorv.hackthefuture.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

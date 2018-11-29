@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.tjorv.hackthefuture.R
-import com.example.tjorv.hackthefuture.activities.MainActivity
 import be.equality.metar.model.Airport
+import com.example.tjorv.hackthefuture.fragments.BaseFragment
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_airports.*
 import kotlinx.android.synthetic.main.row_layout.view.*
@@ -48,30 +48,9 @@ class AirportsFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        airports = createAirports()
         recyclerview.adapter = SimpleItemRecyclerViewAdapter(airports!!)
         recyclerview.layoutManager = LinearLayoutManager(context)
     }
-
-    /**
-     * Creates a basic list of Airports
-     */
-    private fun createAirports() : List<Airport>{
-        val airportList = mutableListOf<Airport>()
-        val resources = activity?.applicationContext?.resources
-        resources?.let {
-            val ids = it.getIntArray(R.array.ids)
-            val descriptions = it.getStringArray(R.array.descriptions)
-            val locationIndicators = it.getStringArray(R.array.locationIndicator)
-
-            for (i in 0 until ids.size) {
-                val airport = Airport(ids[i],locationIndicators[i],descriptions[i])
-                airportList.add(airport)
-            }
-        }
-        return airportList
-    }
-
 
     /**
      * Casting the activity to an [OnFragmentInteractionListener]
@@ -110,7 +89,6 @@ class AirportsFragment : BaseFragment() {
     interface OnFragmentInteractionListener {
         fun showAirportMetar()
     }
-
 
     /***********************************************************************************************
      * Recyclerview showing the aiports
