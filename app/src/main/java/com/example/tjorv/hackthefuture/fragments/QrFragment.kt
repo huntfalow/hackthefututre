@@ -1,7 +1,6 @@
 package be.equality.metar.fragments
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.annotation.Nullable
@@ -11,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tjorv.hackthefuture.R
 import com.example.tjorv.hackthefuture.model.Supply
+import com.example.tjorv.hackthefuture.fragments.BaseFragment
 import com.example.tjorv.hackthefuture.viewModels.MainViewModel
 import com.orhanobut.logger.Logger
 
@@ -24,7 +24,7 @@ import com.orhanobut.logger.Logger
  * create an instance of this fragment.
  *
  */
-class QrFragment {
+class AirportsFragment : Fragment() {
 
     /**
      * The listener to interact with other Activities and Fragments
@@ -38,6 +38,7 @@ class QrFragment {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.list_item_supply, container, false)
     }
@@ -45,18 +46,15 @@ class QrFragment {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        observeViewModel(viewModel)
+
+        //observeViewModel(viewModel)
     }
 
-    private fun observeViewModel(viewModel: MainViewModel) {
-        // Update the list when the data changes
-        viewModel.getSupplyListObservable().observe(this, object : Observer<List<Supply>> {
-            override fun onChanged(@Nullable projects: List<Supply>?) {
-                if (projects != null) {
-                    //TODO add Recyclerview adapter
-                }
-            }
-        })
+    override fun onStart() {
+        super.onStart()
+        //TODO
+        recyclerview.adapter = SimpleItemRecyclerViewAdapter(supplies!!)
+        recyclerview.layoutManager = LinearLayoutManager(context)
     }
 
     /**
