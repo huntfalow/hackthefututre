@@ -13,6 +13,10 @@ import com.example.tjorv.hackthefuture.model.Supply
 import com.example.tjorv.hackthefuture.fragments.BaseFragment
 import com.example.tjorv.hackthefuture.viewModels.MainViewModel
 import com.orhanobut.logger.Logger
+import android.R
+import com.google.android.gms.maps.SupportMapFragment
+
+
 
 
 /**
@@ -24,7 +28,7 @@ import com.orhanobut.logger.Logger
  * create an instance of this fragment.
  *
  */
-class AirportsFragment : Fragment() {
+class QrFragment : Fragment() {
 
     /**
      * The listener to interact with other Activities and Fragments
@@ -41,6 +45,17 @@ class AirportsFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.list_item_supply, container, false)
+
+        //maps
+
+        super.onCreate(savedInstanceState)
+        // Retrieve the content view that renders the map.
+        setContentView(R.layout.activity_maps)
+        // Get the SupportMapFragment and request notification
+        // when the map is ready to be used.
+        val mapFragment = getSupportFragmentManager()
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
